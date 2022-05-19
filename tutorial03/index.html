@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Login page</title>
+</head>
+<body>
+    <div class="container box">
+        <h2 class="mt-2">Login</h2>
+
+        <form action="" id="login_form" >
+            <div class="form-group mt-3 inputbox">
+                <label for="username" class="required">username (Email_Id)</label>
+                <input type="email" class="form-control" name="username" id="form_email" placeholder="Enter User name">
+                <span class="error_form" id="email_error_message"></span>
+            </div>
+            
+        
+            <div class="form-group mt-3 inputbox">
+                <label for="password" class="required">password</label>
+                <input type="password" class="form-control" name="password" id="form_password" placeholder=" Enater Password">
+                <span class="error_form" id="password_error_message"></span>
+            </div>
+
+
+            <div class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="gridCheck">
+                  <label class="form-check-label" for="gridCheck">Remember me</label>
+                </div>
+            </div>
+
+            <div class="form-group mt-2 error_form">
+                <input type="submit" class="btn btn-outline-primary" name="" id="btnsubmit" value="submit">
+            </div>
+            <div class="form-group">
+                <h5 class="form-group">
+                    <a href="" class="" >forget password?</a>
+                </h5>
+            </div>
+
+            <div class="form-group mt-2">
+                <p>New User? <a href="signup.html">&nbsp; Register</a></p>
+            </div>
+
+        </form>
+    </div>
+    <script type="text/javascript">
+        $(function() {
+           $("#email_error_message").hide();
+           $("#password_error_message").hide();
+  
+           var error_email = false;
+           var error_password = false;
+            $("#form_email").focusout(function() {
+              check_email();
+           });
+           $("#form_password").focusout(function() {
+              check_password();
+           });
+  
+           function check_password() {
+              var password_length = $("#form_password").val().length;
+              if (password_length < 8) {
+                 $("#password_error_message").html("Atleast 8 Characters");
+                 $("#password_error_message").css("font-size","12px");
+                 $("#password_error_message").show();
+                 $("#form_password").css("border-bottom","3px solid #F90A0A");
+                 error_password = true;
+              } else {
+                 $("#password_error_message").hide();
+                 $("#form_password").css("border-bottom","3px solid #34F458");
+              }
+           }
+            function check_email() {
+              var pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+              var email = $("#form_email").val();
+              if (pattern.test(email) && email !== '') {
+                 $("#email_error_message").hide();
+                 $("#form_email").css("border-bottom","3px solid #34F458");
+              } else {
+                 $("#email_error_message").html("Invalid Email");
+                 $("#email_error_message").css("font-size","12px");
+                 $("#email_error_message").show();
+                 $("#form_email").css("border-bottom","3px solid #F90A0A");
+                 error_email = true;
+              }
+           }
+  
+           $("#login_form").submit(function() {
+              error_email = false;
+              error_password = false;
+              check_email();
+              check_password();
+  
+              if (error_email === false && error_password === false ) {
+                 alert("Login Successfull");
+                 return true;
+              } else {
+                 alert("Please Fill the form Correctly");
+                 return false;
+              }
+           });
+        });
+     </script>
+</body>
+</html>

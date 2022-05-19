@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <link rel="stylesheet" href="style2.css">
+    <title>sign up </title>
+</head>
+<body>
+
+    <div class="container box">
+        <h2 class="mtp-2">Registration Form</h2>
+
+        <form action="" id="registration_form">
+            <div class="form-group mt-3 inputbox">
+                <label for="username" class="required">Name</label>
+                <input type="text" class="form-control sm error_form" name="username" placeholder="Enter your name.." id="form_fname">
+                <span class="error_form" id="fname_error_message"></span>
+            </div>
+
+            <div class="form-group mt-3 inputbox">
+                <label for="username" class="required">Username (Email id)</label>
+                <input type="email" class="form-control error_form" name="username" id="form_email" placeholder="Enter your user name..">
+                <span class="form-group error_form" id="email_error_message"></span>
+            </div>
+        
+            <div class="form-group mt-3 inputbox">
+                <label for="password" class="required">Password</label>
+                <input type="password" class="form-control error_form" name="password" id="form_password" placeholder="Enter your password..">
+                <span class="form-group error_form" id="password_error_message"></span>
+            </div>
+
+    
+            <div class="form-group mt-3 inputbox ">
+                <label for="password" class="required">Re-password</label>
+                <input type="password" class="form-control sm error_form" name="password" id="form_retype_password" placeholder="Enter your conform paasword.. ">
+                <span class="form-group error_form" id="retype_password_error_message"></span>
+            </div>
+
+            <div class="form-group mt-3 inputbox error_form">
+                <label for="age" class="required">Age</label>
+                <input type="number" class="form-control error_form" min="0" max="70" name="age" id="form_age" placeholder="Enter your age.. ">
+                <span class="error_form" id="age_error_message"></span>
+            </div>
+            <div class="form-group mt-3 inputbox error_form">
+                <label for="date" class="required">Birth date</label>
+                <input type="date" class="form-control error_form" name="date" id="form_date" placeholder="Enter your Birth date..">
+                <span class="error_form" id="date_error_message"></span>
+            </div>
+             
+            <div class="form-group mt-3 inputbox error_form">
+                <label for="city" class="required">City</label>
+                <input type="text" class="form-control error_form" name="city" placeholder="Enter your City .." id="form_city" placeholder="Enter your City..">
+                <span class="error_form" id="city_error_message"></span>
+               </div>
+            <div class="form-group mt-3 inputbox error_form">
+                <label for="state" class="required">State</label>
+                <input type="text" class="form-control error_form" name="state" placeholder="Enter your State" id="form_state" placeholder="Enter your state.. ">
+                <span class="error_form" id="state_error_message"></span>
+               </div>
+            <div class="form-group mt-3 inputbox error_form">
+                <label for="country" class="required">Country</label>
+                <input type="text" class="form-control error_form" name="country" id="form_country" placeholder="Enter your country..">
+                <span class="error_form" id="country_error_message"></span>
+               </div>
+            
+             <div class="form-group error_form">
+                  <label for="exampleFormControlFile1" >Choose profile picture </label>
+                  <input type="file" class="form-control-file sm error_form" id="exampleFormControlFile1">
+               </div>
+             
+              <div class="form-group error_form">
+                <label for="exampleFormControlTextarea1" >Messeage : :</label>
+                <textarea class="form-control error_form" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+
+
+            <div class="form-group mt-2 sub error_form">
+                <input type="submit" class="btn btn-outline-primary " name="" id="btnsubmit" value="Register">
+            </div>
+
+            <div class="form-group mt-2 error_form">
+                <h5><a href="index.html">Already member? </a></h5>
+            </div>
+
+        </form>
+    </div>
+    <script type="text/javascript">
+        $(function() {
+  
+           $("#fname_error_message").hide();
+           $("#email_error_message").hide();
+           $("#password_error_message").hide();
+           $("#retype_password_error_message").hide();
+           $("#age_error_message").hide();
+           $("#date_error_message").hide();
+           $("#city_error_message").hide();
+           $("#state_error_message").hide();
+           $("#country_error_message").hide();
+  
+           var error_fname = false;
+           var error_email = false;
+           var error_password = false;
+           var error_retype_password = false;
+           var error_age = false;
+           var error_date = false;
+           var error_city = false;
+           var error_state = false;
+           var error_country = false;
+  
+           $("#form_fname").focusout(function(){
+              check_fname();
+           });
+           $("#form_email").focusout(function() {
+              check_email();
+           });
+           $("#form_password").focusout(function() {
+              check_password();
+           });
+           $("#form_retype_password").focusout(function() {
+              check_retype_password();
+           });
+           $("#form_age").focusout(function(){
+            check_age();
+           });
+           $("#form_date").focusout(function(){
+            check_date();
+           });
+           $("#form_city").focusout(function(){
+            check_city();
+           });
+           $("#form_state").focusout(function(){
+            check_state();
+           });
+           $("#form_country").focusout(function(){
+            check_country();
+           });
+
+           function check_fname() {
+              var pattern = /^[a-zA-Z]*$/;
+              var fname = $("#form_fname").val();
+              if (pattern.test(fname) && fname !== '') {
+                 $("#fname_error_message").hide();
+                 $("#form_fname").css("border-bottom","3px solid #34F458");
+              } else {
+                 $("#fname_error_message").html("Should contain only Characters");
+                 $("#fname_error_message").css("font-size","12px");
+                 $("#fname_error_message").show();
+                 $("#form_fname").css("border-bottom","3px solid rgb(255, 1, 1)");
+                 error_fname = true;
+              }
+           }
+           function check_password() {
+              var password_length = $("#form_password").val().length;
+              if (password_length < 8) {
+                 $("#password_error_message").html("Atleast 8 Characters");
+                 $("#password_error_message").css("font-size","12px");
+                 $("#password_error_message").show();
+                 $("#form_password").css("border-bottom","3px solid #F90A0A");
+                 error_password = true;
+              } else {
+                 $("#password_error_message").hide();
+                 $("#form_password").css("border-bottom","3px solid #34F458");
+              }
+           }
+  
+           function check_retype_password() {
+              var password = $("#form_password").val();
+              var retype_password = $("#form_retype_password").val();
+              var password_length = $("#form_retype_password").val().length;
+              if (password_length < 8 || password !== retype_password ) {
+                 $("#retype_password_error_message").html("Passwords Did not Matched");
+                 $("#retype_password_error_message").css("font-size","12px");
+                 $("#retype_password_error_message").show();
+                 $("#form_retype_password").css("border-bottom","3px solid #F90A0A");
+                 error_retype_password = true;
+              } else {
+                 $("#retype_password_error_message").hide();
+                 $("#form_retype_password").css("border-bottom","3px solid #34F458");
+              }
+           }
+  
+           function check_email() {
+              var pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+              var email = $("#form_email").val();
+              if (pattern.test(email) && email !== '') {
+                 $("#email_error_message").hide();
+                 $("#form_email").css("border-bottom","3px solid #34F458");
+              } else {
+                 $("#email_error_message").html("Invalid Email");
+                 $("#email_error_message").css("font-size","12px");
+                 $("#email_error_message").show();
+                 $("#form_email").css("border-bottom","3px solid #F90A0A");
+                 error_email = true;
+              }
+           }
+           function check_age() {
+            /*var pattern = /^[0-9]*$/; */
+            var pattern = /^\S[0-9]{0,1}$/;  
+            var age = $("#form_age").val();
+            if (pattern.test(age) && age !== '' && age >=10 && age <=70) {
+               $("#age_error_message").hide();
+               $("#form_age").css("border-bottom","3px solid #34F458");
+            } else {
+               $("#age_error_message").html("Should contain only two digit number between 10 to 70 ");
+               $("#age_error_message").css("font-size","12px");
+               $("#age_error_message").show();
+               $("#form_age").css("border-bottom","3px solid #F90A0A");
+               error_age = true;
+               }
+            }
+           function check_date() {
+            var date = $("#form_date").val();
+            if ( date !== '' ) {
+               $("#date_error_message").hide();
+               $("#form_date").css("border-bottom","3px solid #34F458");
+            } else {
+               $("#date_error_message").html("please Enter valid date ");
+               $("#date_error_message").css("font-size","12px");
+               $("#date_error_message").show();
+               $("#form_date").css("border-bottom","3px solid #F90A0A");
+               error_date = true;
+               }
+            }
+           function check_city() {
+            
+            var pattern = /^[a-zA-Z]*$/;  
+            var city = $("#form_city").val();
+            if (pattern.test(city) && city !== '' ) {
+               $("#city_error_message").hide();
+               $("#form_city").css("border-bottom","3px solid #34F458");
+            } else {
+               $("#city_error_message").html("Should contain only Characters");
+               $("#city_error_message").css("font-size","12px");
+               $("#city_error_message").show();
+               $("#form_city").css("border-bottom","3px solid #F90A0A");
+               error_city = true;
+               }
+            }
+           function check_state() {
+            
+            var pattern = /^[a-zA-Z]*$/;  
+            var state = $("#form_state").val();
+            if (pattern.test(state) && state !== '' ) {
+               $("#state_error_message").hide();
+               $("#form_state").css("border-bottom","3px solid #34F458");
+            } else {
+               $("#state_error_message").html("Should contain only Characters");
+               $("#state_error_message").css("font-size","12px");
+               $("#state_error_message").show();
+               $("#form_state").css("border-bottom","3px solid #F90A0A");
+               error_state = true;
+               }
+            }
+           function check_country() {
+            var pattern = /^[a-zA-Z]*$/;  
+            var country = $("#form_country").val();
+            if (pattern.test(country) && country !== '' ) {
+               $("#country_error_message").hide();
+               $("#form_country").css("border-bottom","3px solid #34F458");
+            } else {
+               $("#country_error_message").html("Should contain only Characters");
+               $("#country_error_message").css("font-size","12px");
+               $("#country_error_message").show();
+               $("#form_country").css("border-bottom","3px solid #F90A0A");
+               error_country = true;
+               }
+            }
+
+  
+           $("#registration_form").submit(function() {
+              error_fname = false;
+              error_email = false;
+              error_password = false;
+              error_retype_password = false;
+              error_age = false;
+              error_date = false;
+              error_city = false;
+              error_state = false;
+              error_country = false;
+  
+              check_fname();
+              check_email();
+              check_password();
+              check_retype_password();
+              check_age();
+              check_date();
+              check_city();
+              check_state();
+              check_country();
+  
+              if (error_fname === false && error_email === false && error_password === false && error_retype_password === false && error_age === false && error_date === false && error_city === false && error_state === false && error_country === false) {
+                 alert("Registration Successfull");
+                 return true;
+              } else {
+                 alert("Please Fill the form Correctly");
+                 return false;
+              }
+            });
+        });
+    </script>
+</body>
+</html>
